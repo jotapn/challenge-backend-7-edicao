@@ -16,14 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from viagens.views import DepoimentoViewSet, DepoimentoHomeViewSet
+from apps.viagens.views import DepoimentoViewSet, DepoimentoHomeViewSet
 from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
-router.register('depoimentos', DepoimentoViewSet)
-router.register('depoimentos-home', DepoimentoHomeViewSet, basename='Depoimentos')
+router.register('depoimentos', DepoimentoViewSet, basename = 'Depoimentos')
+router.register('depoimentos-home', DepoimentoHomeViewSet, basename='DepoimentosHome')
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
