@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'apps.viagens.apps.ViagensConfig',
+    'apps.destinos.apps.DestinosConfig',
 ]
 
 MIDDLEWARE = [
