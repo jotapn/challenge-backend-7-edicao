@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'django_filters',
 
     'apps.viagens.apps.ViagensConfig',
     'apps.destinos.apps.DestinosConfig',
@@ -135,8 +136,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions',
+        ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.BasicAuthentication',],
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': None
+
+    'PAGE_SIZE': None,
+    
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 PROJECT_ROOT = os.path.dirname(__file__)

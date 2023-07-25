@@ -5,6 +5,3 @@ class DestinoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Destino
         fields = '__all__'
-
-    
-    search_fields = ['nome']
