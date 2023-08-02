@@ -4,30 +4,53 @@ from django.db import models
 import os
 
 class Destino(models.Model):
-    def upload_path(instance, filename):
+    '''Modelo dos Destinos'''
+    def upload_path_1(instance, filename):
+        '''Criando caminho para as'''
         type_file = filename.split(".")[-1]
-        filename = instance.nome.replace(" ", "_") + "." + type_file
+        filename = instance.nome.replace(" ", "_") + "1." + type_file
+        return f'destinos/{filename}'
+    
+    def upload_path_2(instance, filename):
+        '''Criando caminho para as'''
+        type_file = filename.split(".")[-1]
+        filename = instance.nome.replace(" ", "_") + "2." + type_file
         return f'destinos/{filename}'
 
-    foto = models.ImageField(
-        verbose_name='Imagem',
-        null = True, blank=True,
-        upload_to= upload_path)
+    foto_1 = models.ImageField(
+        verbose_name='Foto 1',
+        null = True,
+        blank=True,
+        upload_to= upload_path_1)
+    
+    foto_2 = models.ImageField(
+        verbose_name='Foto 2',
+        null = True,
+        blank=True,
+        upload_to= upload_path_2)
     
     nome = models.CharField(
         verbose_name='Nome',
-        max_length=30,null = False,
+        max_length=40,
+        null = False,
         blank = False)
     
-    preco = models.FloatField(
+    meta = models.CharField(
+        max_length=160,
+        default= None,
+        null=False)
+
+    texto_descritivo = models.TextField(
+        verbose_name='Texto Descritivo',
+        default= None,
+        null=True,
+        blank= True)
+
+    preco = models.IntegerField(
         verbose_name='Preço',
-        max_length=10,
         null = False,
         blank = False)
 
     def __str__(self) -> str:
         return self.nome
     
-@receiver(pre_delete, sender=Destino)
-def handler_pre_delete(sender, instance, **kwargs):
-    os.remove(instance.foto.path)

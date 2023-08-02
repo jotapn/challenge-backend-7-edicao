@@ -15,8 +15,8 @@ class DestinosViewSet(viewsets.ModelViewSet):
     search_fields = ['nome']
 
     def list(self, request):
-            queryset = self.filter_queryset(self.get_queryset())
-            if not queryset.exists():
-                return Response({"mensagem": "Nenhum destino encontrado."}, status=status.HTTP_404_NOT_FOUND)
-            serializer = self.get_serializer(queryset, many=True)
-            return Response(serializer.data)        
+        queryset = self.filter_queryset(self.get_queryset())
+        if not queryset.exists():
+            return Response({"mensagem": "Nenhum destino encontrado."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)        

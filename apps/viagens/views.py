@@ -18,11 +18,14 @@ class DepoimentoHomeViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        depoimentos = Depoimento.objects.all()
-        queryset = random.sample(list(depoimentos), k=3)
-        return queryset
+        try:
+            depoimentos = Depoimento.objects.all()
+            queryset = random.sample(list(depoimentos), k=3)
+            return queryset
+        except:
+            return depoimentos
 
-    @method_decorator(cache_page(10))
+    @method_decorator(cache_page(3))
     def dispatch(self, *args, **kwargs):
         return super(DepoimentoHomeViewSet, self).dispatch(*args, **kwargs)
 
