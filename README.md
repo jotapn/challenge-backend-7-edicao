@@ -5,15 +5,33 @@ Projeto feito durante o mês do desafio Challenge#7 BackEnd da Alura.
 
 Este é um projeto de API REST desenvolvida com Django Rest para disponibilizar informações e recursos relacionados a possíveis destinos de viagem, exibindo fotos, textos e depoimentos de outras pessoas viajantes.
 
-## Descrição do Desafio
+# Descrição do Desafio
 
 O desafio proposto é a construção de uma API para gerenciar depoimentos de viagens, permitindo cadastrar novos depoimentos, buscar depoimentos existentes, atualizar e remover depoimentos. Além disso, há um endpoint adicional para obter três depoimentos aleatórios.
 
-### Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - Linguagem de Programação: Python
 - Framework: Django Rest
 - Banco de Dados: SQlite
+
+## Documentação da API
+A documentação da API (swagger) esta disponível na rota /swagger/
+![image](https://github.com/jotapn/challenge-backend-7-edicao/assets/113472310/825b2fe5-5d22-4e6b-84cf-2c27cfff9a73)
+
+
+# Funcionalidades
+## Depoimentos
+- `Cadastrar`: Cadastrar depoimentos através de um `POST /depoimentos/`.
+
+- `Buscar todos`: Busca paginada de todos os depoimentos através de um `GET /depoimentos/`.
+
+- `Buscar por id`: Busca depoimento por ID através de um `GET /depoimentos/{ID}/`, onde *{ID}* é o identificador do depoimento.
+
+- `Atualizar`: Atualizar depoimento através de um `PATCH /depoimentos/{ID}/`, onde *ID* é o identificador do depoimento,
+  os novos dados do depoimento devem ser enviados no corpo da requisição.
+
+- `Deletar`: Deletar depoimento através de um `DELETE /depoimentos/{ID}`, onde *{ID}* é o identificador do depoimento.
 
 ## Endpoints de Depoimentos
 
